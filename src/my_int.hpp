@@ -8,46 +8,49 @@
 
 class MyInt : public Observable<MyInt>{
 public:
-    // MyInt() : Observable<MyInt>() {
-    //     std::cout << "MyInt default constructor called" << std::endl;
-    // }
 
-    MyInt(std::string name) {
-        PROCESS_CTOR(name);
+    MyInt(int val = 0, std::string name = "");
+
+#ifdef ALLOW_COPY_SEMANTICS
+    MyInt(const MyInt& other, std::string name = "");
+    MyInt& operator=(const MyInt& other);
+#endif
+
+#ifdef ALLOW_MOVE_SEMANTICS
+    MyInt(MyInt&& other, std::string name = "");
+    MyInt& operator=(MyInt&& other);
+#else
+    MyInt(MyInt&& other, std::string name = "") = delete;
+    MyInt& operator=(MyInt&& other) = delete;
+#endif
+    
+    MyInt operator+(const MyInt& other)  const;
+    MyInt operator-(const MyInt& other)  const;
+    MyInt operator*(const MyInt& other)  const;
+    MyInt operator/(const MyInt& other)  const;
+    MyInt operator%(const MyInt& other)  const;
+    MyInt operator^(const MyInt& other)  const;
+    MyInt operator&(const MyInt& other)  const;
+    MyInt operator|(const MyInt& other)  const;
+    MyInt operator~()                    const;
+    MyInt operator<<(const MyInt& other) const;
+    MyInt operator>>(const MyInt& other) const;
+    
+    MyInt& operator+= (const MyInt& other);
+    MyInt& operator-= (const MyInt& other);
+    MyInt& operator*= (const MyInt& other);
+    MyInt& operator/= (const MyInt& other);
+    MyInt& operator%= (const MyInt& other);
+    MyInt& operator^= (const MyInt& other);
+    MyInt& operator&= (const MyInt& other);
+    MyInt& operator|= (const MyInt& other);
+    MyInt& operator<<=(const MyInt& other);
+    MyInt& operator>>=(const MyInt& other);
+
+    std::string get_value() const override {
+        return std::to_string(m_value);
     }
 
-    MyInt(int val, std::string name = "") {
-        PROCESS_CTOR(name);
-        m_value = val;
-    }
-    
-
-    int operator+(const MyInt& other)  const;
-    int operator-(const MyInt& other)  const;
-    int operator*(const MyInt& other)  const;
-    int operator/(const MyInt& other)  const;
-    int operator%(const MyInt& other)  const;
-    int operator^(const MyInt& other)  const;
-    int operator&(const MyInt& other)  const;
-    int operator|(const MyInt& other)  const;
-    int operator~()                    const;
-    int operator<<(const MyInt& other) const;
-    int operator>>(const MyInt& other) const;
-    
-    int operator+=(const MyInt& other);
-    int operator-=(const MyInt& other);
-    int operator*=(const MyInt& other);
-    int operator/=(const MyInt& other);
-    int operator%=(const MyInt& other);
-    int operator^=(const MyInt& other);
-    int operator&=(const MyInt& other);
-    int operator|=(const MyInt& other);
-    int operator<<=(const MyInt& other);
-    int operator>>=(const MyInt& other);
-    
-    const char* get_class_name() override {
-        return "MyInt";
-    }
 private:
     std::string m_function_name = "";
     
@@ -55,6 +58,7 @@ private:
     int m_value = 0;
 
 };
+
 
 
 

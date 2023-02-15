@@ -1,0 +1,30 @@
+digraph G {
+node [shape=record];
+fontname="Roboto Mono"
+subgraph cluster1 {
+color=black
+style=filled
+fillcolor="#00000010"
+label="main.cpp:main():19"
+a_0_0 [color=darkgreen, label="{var_name='a'|value=5|address=000000f9ae9ff7e0|id=0}"]
+b_1_0 [color=darkgreen, label="{var_name='b'|value=10|address=000000f9ae9ff750|id=1}"]
+c_2_0 [color=darkgreen, label="{var_name='c'|value=10|address=000000f9ae9ff6c0|id=2}"]
+subgraph cluster2 {
+color=black
+style=filled
+fillcolor="#00000010"
+label="main.cpp:test1():10"
+subgraph cluster3 {
+color=black
+style=filled
+fillcolor="#00000010"
+label="main.cpp:test0():5"
+tmp0_3_0 [color=red, label="{var_name='tmp0'|value=15|address=000000f9ae9ff920|id=3}"]
+op2 [color=blue, shape=circle, label="operator+"]
+a_0_0 -> op2 [color=blue, label="", fontcolor=""]
+b_1_0 -> op2 [color=blue, label="", fontcolor=""]
+op2 -> tmp0_3_0 [color=blue, label="", fontcolor=""]
+}
+}
+}
+}

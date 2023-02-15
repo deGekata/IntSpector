@@ -1,0 +1,26 @@
+digraph
+{
+    fillcolor="#00000010"
+    style=filled
+    a
+    m
+
+    subgraph cluster_mysubgraph
+    {
+        fillcolor="#00000010"
+        style=filled
+        subgraph cluster_mysubgraph
+        {
+            fillcolor="#00000010"
+            style=filled
+            c
+            
+        }
+        b
+        a->c
+    }
+
+    a->b
+    b->c
+    a->m
+}

@@ -13,7 +13,7 @@ OUT_FILE_NAME = $(APPLICATION).exe
 # test:
 # 	$(info    DIR is $(CWD))
 # Сompiler options
-CC = g++
+CC = g++ 
 CWD := $(subst /,\\, $(abspath $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST)))))))
 INCLUDE_PATHS := $(call uniq, $(sort $(dir $(call rwildcard,src, *.hpp *.cpp *.h))))
 
