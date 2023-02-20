@@ -5,7 +5,7 @@ uniq = $(if $1,$(firstword $1) $(call uniq,$(filter-out $(firstword $1),$1)))
 
 # Applicaton options
 APPLICATION = $(notdir $(CURDIR))# Application name is name of root holder
-GXX_STANDARD = 17 # 11, 14, 17, 20
+GXX_STANDARD = 14 # 11, 14, 17, 20
 OUT_FILE_NAME = $(APPLICATION).exe
 
 # Get project directory
@@ -20,9 +20,9 @@ INCLUDE_PATHS := $(call uniq, $(sort $(dir $(call rwildcard,src, *.hpp *.cpp *.h
 INCLUDE_PATHS := $(subst /,\\,$(dir $(INCLUDE_PATHS)))
 INCLUDE_PATHS := $(patsubst %,-I$(CWD)\\\\% ,$(INCLUDE_PATHS)) 
 LIBS_PATHS = 
-CXXFLAGS = -Wall -Wextra -std=c++$(GXX_STANDARD)
+CXXFLAGS = -Wall -Wextra -std=c++$(GXX_STANDARD) -fno-elide-constructors
 CXXFLAGS += $(INCLUDE_PATHS) $(LIBS_PATHS)
-LXXFLAGS = 
+LXXFLAGS = -fno-elide-constructors
 
 
 

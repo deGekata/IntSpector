@@ -33,6 +33,14 @@ GraphvizLogger::~GraphvizLogger() {
     for (auto &s : m_links) {
         fprintf(m_file, "%s", s.c_str());
     }
+
+    fprintf(m_file, "subgraph caption1 {\n"
+                                "label=\"...\"\n"
+                                "COPIES [label=\"COPY_COUNT=%d\"]\n"
+                                "TMPS [label=\"MOVE_COUNT=%d\"]\n"
+                                "}\n",
+                                m_copy_count, m_move_count);
+
     fprintf(m_file, "}\n");
     fclose(m_file);
     std::string cmd_str = "dot " + m_filename + " -Tpng -o " + m_filename + ".png";
@@ -151,4 +159,12 @@ void GraphvizLogger::createOrientedEdge(const char* from,
     m_links.push_back(stream.str());
     // fprintf(m_file, "%s -> %s [color=%s, label=\"%s\", fontcolor=\"%s\"]\n",
     //         from, to.get_unique_name().c_str(), color, label, label_color);
+}
+
+void GraphvizLogger::inc_copy_cnt() {
+        m_copy_count++;
+}
+
+void GraphvizLogger::inc_move_cnt() {
+        m_move_count++;
 }

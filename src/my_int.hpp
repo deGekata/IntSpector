@@ -5,7 +5,12 @@
 #include <iostream>
 #include "Observable.hpp"
 
+#define TEST_LEVEL 0
 
+#if TEST_LEVEL == 3 || TEST_LEVEL == 2
+    //rnwo
+    #define ALLOW_MOVE_SEMANTICS
+#endif
 class MyInt : public Observable<MyInt>{
 public:
 
@@ -60,7 +65,58 @@ private:
 };
 
 
+#if TEST_LEVEL == 0
+//here args will be transfered by value
+//ans swapped values will be returned by pair
+//and no rnwo optimisation
+    static MyInt smart_sum_aggregator(MyInt a, MyInt b, MyInt c) {
+        TRACK_FUNCTION_CALL
+        CREATE_VAR_VAL(MyInt, ret, a + b - c);
+        return ret;
+    }
+#endif
+
+#if TEST_LEVEL == 1
+//pass args by reference
+//still no rnwo
+//no move constructors
+    static MyInt smart_sum_aggregator(MyInt& a, MyInt& b, MyInt& c) {
+        TRACK_FUNCTION_CALL
+        CREATE_VAR_VAL(MyInt, ret, a + b - c);
+        return ret;
+    }
+#endif
+
+#if TEST_LEVEL == 2
+    #define ALLOW_MOVE_SEMANTICS
+    static MyInt smart_sum_aggregator(MyInt& a, MyInt& b, MyInt& c) {
+        TRACK_FUNCTION_CALL
+        CREATE_VAR_VAL(MyInt, ret, a + b - c);
+        return ret;
+    }
+//allow move constructors
+//no rnwo
+
+#endif
+
+#if TEST_LEVEL == 3
+    //rnwo
+    #define ALLOW_MOVE_SEMANTICS
+    static MyInt smart_sum_aggregator(MyInt& a, MyInt& b, MyInt& c) {
+        TRACK_FUNCTION_CALL
+        CREATE_VAR_VAL(MyInt, ret, a + b - c);
+        return ret;
+    }
+#endif
 
 
+static void test_sum_agg() {
+    TRACK_FUNCTION_CALL
+    CREATE_VAR_VAL(MyInt, a, 14);
+    CREATE_VAR_VAL(MyInt, b, 29);
+    CREATE_VAR_VAL(MyInt, c, 7);
+    CREATE_VAR_VAL(MyInt, res, smart_sum_aggregator(a, b, c));
+    return;
+}
 
 #endif

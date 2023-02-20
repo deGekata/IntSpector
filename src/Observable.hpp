@@ -25,9 +25,7 @@
 
 static std::string dump_folder_path = "dump/";
 
-#define ALLOW_COPY_SEMANTICS
-// #define ALLOW_MOVE_SEMANTICS
-#define ASSIGNMENT_OPERATOR_OPTIMIZATION
+
 
 template <class T>
 class Observer;

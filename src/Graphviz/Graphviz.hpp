@@ -82,12 +82,17 @@ public:
 
     void createSubgraph(const char* name, const char* label);
 
+    void inc_copy_cnt();
+
+    void inc_move_cnt();
 
 private:
     FILE*       m_file;
     std::string m_filename;
     std::vector<std::string> m_links;
     int         m_cluster_count = 0;
+    int         m_copy_count = 0;
+    int         m_move_count = 0;
 };
 
 

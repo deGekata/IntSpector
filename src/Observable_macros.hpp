@@ -22,12 +22,14 @@
         }\
         observer_instance->m_logger->createOrientedEdge(other, *this, "red", "COPY", "red");\
         observer_instance->copy_count++;\
+        observer_instance->m_logger->inc_copy_cnt();\
     }
 
 #define PROCESS_COPY_ASSIGNMENT\
     {\
         observer_instance->m_logger->createOrientedEdge(other, *this, "red", "COPY", "red");\
         observer_instance->copy_count++;\
+        observer_instance->m_logger->inc_copy_cnt();\
     }
 
 
@@ -42,12 +44,14 @@
         }\
         observer_instance->m_logger->createOrientedEdge(other, *this, "darkgreen", "MOVE", "darkgreen");\
         observer_instance->move_count++;\
+        observer_instance->m_logger->inc_move_cnt();\
     }
 
 #define PROCESS_MOVE_ASSIGNMENT\
     {\
         observer_instance->m_logger->createOrientedEdge(other, *this, "darkgreen", "MOVE", "darkgreen");\
         observer_instance->move_count++;\
+        observer_instance->m_logger->inc_move_cnt();\
     }
 
 
@@ -77,3 +81,10 @@
     GraphvizEnvTracker object_unique_name_848481(Location_t __LOCATION__);
 
 #endif
+
+
+#define ALLOW_COPY_SEMANTICS
+#define ASSIGNMENT_OPERATOR_OPTIMIZATION
+
+
+
