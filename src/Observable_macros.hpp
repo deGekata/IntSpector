@@ -46,7 +46,7 @@
 
 #define PROCESS_MOVE_ASSIGNMENT\
     {\
-        observer_instance->m_logger->createOrientedEdge(other, *this, "red", "MOVE", "red");\
+        observer_instance->m_logger->createOrientedEdge(other, *this, "darkgreen", "MOVE", "darkgreen");\
         observer_instance->move_count++;\
     }
 
@@ -56,6 +56,7 @@
 
 #define CREATE_VAR(TYPE, NAME) \
     TYPE NAME(#NAME)
+
 
 
 // #define COPY_CTOR(TYPE, NAME, VAL) 

@@ -24,7 +24,7 @@
 //}
 
 #define ALLOW_COPY_SEMANTICS
-#define ALLOW_MOVE_SEMANTICS
+// #define ALLOW_MOVE_SEMANTICS
 #define ASSIGNMENT_OPERATOR_OPTIMIZATION
 
 template <class T>

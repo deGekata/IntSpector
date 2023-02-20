@@ -30,6 +30,9 @@ GraphvizLogger::~GraphvizLogger() {
     //                        "label=\"...\"\n"
     //                        "COPIES [label=\"COPY_COUNT=%d\"]\n"
     //                        "}\n",
+    for (auto &s : m_links) {
+        fprintf(m_file, "%s", s.c_str());
+    }
     fprintf(m_file, "}\n");
     fclose(m_file);
     std::string cmd_str = "dot " + m_filename + " -Tpng -o " + m_filename + ".png";
@@ -117,8 +120,11 @@ void GraphvizLogger::createOrientedEdge(const Graph_object_t &from,
                                         const char *label,
                                         const char *label_color)
 {
-    fprintf(m_file, "%s -> %s [color=%s, label=\"%s\", fontcolor=\"%s\"]\n",
-            from.get_unique_name().c_str(), to.get_unique_name().c_str(), color, label, label_color);
+    std::stringstream stream;
+    stream << from.get_unique_name() << " -> " << to.get_unique_name() << " [color=" << color << ", label=\"" << label  << "\", fontcolor=\"" << label_color << "\"]\n";
+    m_links.push_back(stream.str());
+    // fprintf(m_file, "%s -> %s [color=%s, label=\"%s\", fontcolor=\"%s\"]\n",
+    //         from.get_unique_name().c_str(), to.get_unique_name().c_str(), color, label, label_color);
 }
 
 void GraphvizLogger::createOrientedEdge(const Graph_object_t &from,
@@ -127,8 +133,11 @@ void GraphvizLogger::createOrientedEdge(const Graph_object_t &from,
                                         const char *label,
                                         const char *label_color)
 {
-    fprintf(m_file, "%s -> %s [color=%s, label=\"%s\", fontcolor=\"%s\"]\n",
-            from.get_unique_name().c_str(), to, color, label, label_color);
+    std::stringstream stream;
+    stream << from.get_unique_name() << " -> " << to << " [color=" << color << ", label=\"" << label  << "\", fontcolor=\"" << label_color << "\"]\n";
+    m_links.push_back(stream.str());
+    // fprintf(m_file, "%s -> %s [color=%s, label=\"%s\", fontcolor=\"%s\"]\n",
+    //         from.get_unique_name().c_str(), to, color, label, label_color);
 }
 
 void GraphvizLogger::createOrientedEdge(const char* from,
@@ -137,6 +146,9 @@ void GraphvizLogger::createOrientedEdge(const char* from,
                                         const char *label,
                                         const char *label_color)
 {
-    fprintf(m_file, "%s -> %s [color=%s, label=\"%s\", fontcolor=\"%s\"]\n",
-            from, to.get_unique_name().c_str(), color, label, label_color);
+    std::stringstream stream;
+    stream << from << " -> " << to.get_unique_name() << " [color=" << color << ", label=\"" << label  << "\", fontcolor=\"" << label_color << "\"]\n";
+    m_links.push_back(stream.str());
+    // fprintf(m_file, "%s -> %s [color=%s, label=\"%s\", fontcolor=\"%s\"]\n",
+    //         from, to.get_unique_name().c_str(), color, label, label_color);
 }

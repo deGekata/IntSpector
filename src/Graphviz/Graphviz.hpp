@@ -4,6 +4,7 @@
 #include <cstdio>
 #include <iostream>
 #include <string>
+#include <sstream>
 #include <vector>
 #include <stdexcept>
 #include "Location.hpp"
@@ -83,7 +84,7 @@ public:
 private:
     FILE*       m_file;
     std::string m_filename;
-    std::string m_links;
+    std::vector<std::string> m_links;
     int         m_cluster_count = 0;
 };
 

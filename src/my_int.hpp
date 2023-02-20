@@ -19,9 +19,9 @@ public:
 #ifdef ALLOW_MOVE_SEMANTICS
     MyInt(MyInt&& other, std::string name = "");
     MyInt& operator=(MyInt&& other);
-#else
-    MyInt(MyInt&& other, std::string name = "") = delete;
-    MyInt& operator=(MyInt&& other) = delete;
+// #else
+//     MyInt(MyInt&& other, std::string name = "") = delete;
+//     MyInt& operator=(MyInt&& other) = delete;
 #endif
     
     MyInt operator+(const MyInt& other)  const;
