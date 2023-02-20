@@ -23,6 +23,8 @@
 // }
 //}
 
+static std::string dump_folder_path = "dump/";
+
 #define ALLOW_COPY_SEMANTICS
 // #define ALLOW_MOVE_SEMANTICS
 #define ASSIGNMENT_OPERATOR_OPTIMIZATION
@@ -49,7 +51,7 @@ private:
     
 protected:
     Observer(){
-        m_logger = new GraphvizLogger(std::string(typeid(T).name()) + ".dot");
+        m_logger = new GraphvizLogger(dump_folder_path + std::string(typeid(T).name()) + ".dot");
         
     };//implement constructor
     Observer(const Observer<T>&) = default;

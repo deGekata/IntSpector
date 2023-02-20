@@ -12,6 +12,8 @@
 class GraphvizLogger;
 
 
+
+
 void addLogger(GraphvizLogger* logger);
 
 class GraphvizEnvTracker {

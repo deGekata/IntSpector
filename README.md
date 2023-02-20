@@ -16,6 +16,21 @@ A copy constructor, on the other hand, creates a new object by copying the resou
 
 The main difference between a move constructor and a copy constructor is that a move constructor transfers ownership of the resources, while a copy constructor creates a new copy of the resources.
 
+# Here is some information about existing types of constructors by "sample" object
+`T(T&)`: This is a non-const copy constructor that creates a new object by copying the contents of an existing object. The parameter passed to this constructor is a non-const reference to the object being copied, which allows the constructor to modify the object if necessary.
+
+`T(const T&)`: This is a const copy constructor that creates a new object by copying the contents of an existing object. The parameter passed to this constructor is a const reference to the object being copied, which means that the constructor cannot modify the object.
+
+`T(T&&)`: This is a move constructor that creates a new object by "stealing" the contents of an existing object. The parameter passed to this constructor is an rvalue reference to the object being moved, which allows the constructor to efficiently transfer ownership of the object's resources without making a copy.
+
+`T(const T&&)`: It scares me...
+
+
+
+
+
+
+
 # Situations Where Move Constructor Can't/Shouldn't be Used and Similarly for Copy Constructor
 
 There are some situations where a move constructor shouldn't be used. For example, if the object being moved is a constant object, or if the object being moved has a small amount of data that can be copied quickly, then a move constructor is unnecessary and may even be slower than a copy constructor.
@@ -23,3 +38,5 @@ There are some situations where a move constructor shouldn't be used. For exampl
 Similarly, there are some situations where a copy constructor can't be used. For example, if the object being copied has resources that can't be copied, such as a file handle or a network connection, then a copy constructor may not be possible.
 
 In general, it's important to consider the resources being used by an object, and the performance implications of copying or moving those resources, in order to decide whether to use a move constructor, a copy constructor, or some other approach.
+
+
