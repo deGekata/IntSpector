@@ -65,4 +65,11 @@ Now there are no copies left, they all have shifted to moves:`MOVE_COUNT=5`. Our
 ## Has references, move semantics and NRVO\RVO
 ![Level 3](https://github.com/deGekata/IntSpector/blob/bc2f6f918ac79cf4d514f6db294bfbf23f3a1d7c/lab_data/HasRefMoveOpt.png)
 
-Thats all for now, my brothers. My greetings! We have come a long way from ` COPY_COUNT=8,MOVE_COUNT=0 -> COPY_COUNT=5,MOVE_COUNT=0 -> COPY_COUNT=0,MOVE_COUNT=5 -> COPY_COUNT=0,MOVE_COUNT=2`
+Thats all for now. My greetings! We have come a long way, my brothers
+
+|                                                | Copy count | Move count |
+|------------------------------------------------|------------|------------|
+| No references, move semantics and NRVO\RVO     | 8          | 0          |
+| Has references, no move semantics and NRVO\RVO | 5          | 0          |
+| Has references and move semantics, no NRVO\RVO | 0          | 5          |
+| Has references, move semantics and NRVO\RVO    | 0          | 2          |
