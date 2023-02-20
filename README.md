@@ -43,5 +43,10 @@ In general, it's important to consider the resources being used by an object, an
 # Optimisation time: move defeats copy
 
 Lets move on some examples
+![Level 0](https://github.com/deGekata/IntSpector/blob/bc2f6f918ac79cf4d514f6db294bfbf23f3a1d7c/lab_data/NoOptMoveRef.png)
 
-!(img)
+![Level 1](https://github.com/deGekata/IntSpector/blob/bc2f6f918ac79cf4d514f6db294bfbf23f3a1d7c/lab_data/NoOptMove_HasRef.png)
+
+![Level 2](https://github.com/deGekata/IntSpector/blob/bc2f6f918ac79cf4d514f6db294bfbf23f3a1d7c/lab_data/NoOpt_HasRefMove.png)
+
+![Level 3](https://github.com/deGekata/IntSpector/blob/bc2f6f918ac79cf4d514f6db294bfbf23f3a1d7c/lab_data/HasRefMoveOpt.png)
